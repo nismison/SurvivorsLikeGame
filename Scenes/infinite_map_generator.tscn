@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://qfy4alpok1ka"]
+
+[ext_resource type="Script" uid="uid://d3ofdqp10m6xs" path="res://Scenes/infinite_map_generator.gd" id="1_4eyx0"]
+[ext_resource type="TileSet" uid="uid://c6so4s5rk5610" path="res://Resources/tile_set.tres" id="2_3hjrg"]
+
+[node name="InfiniteMapGenerator" type="Node2D"]
+script = ExtResource("1_4eyx0")
+
+[node name="MapBackground" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_3hjrg")
+
+[node name="GrassTerrain" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_3hjrg")

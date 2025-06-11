@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://clo86nmidalf7"]
+
+[ext_resource type="Texture2D" uid="uid://diqs7yeudewob" path="res://Assets/GUI/KeyboardIcons/keyboard_15.png" id="1_02ol2"]
+[ext_resource type="Texture2D" uid="uid://badjb50xs3u6" path="res://Assets/GUI/KeyboardIcons/keyboard_116.png" id="2_10r58"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8a40f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_02ol2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_10r58")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="ActionTip" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8a40f")
+autoplay = "default"
+frame_progress = 0.886628

@@ -1,0 +1,46 @@
+{
+  "items": [
+	{
+	  "id": 10000,
+	  "name": "芭娜娜",
+	  "description": "“我喜欢滑着走” —— 紫皮大蒜\n\n小幅增加冲刺速度",
+	  "icon_path": "res://Resources/ItemsIcon/10000.tres",
+	  "price": 50,
+	  "stack_size": 10,
+	  "item_type": "RELIC",
+	  "rarity": "EPIC",
+	  "effects": {
+		"heal": 50
+	  }
+	},
+  ],
+  "item_types": {
+	"RELIC": "圣物",
+	"WEAPON": "武器",
+	"ARMOR": "护甲",
+	"MATERIAL": "材料",
+	"QUEST": "任务物品"
+  },
+  "rarities": {
+	"COMMON": {
+	  "name": "普通",
+	  "color": "#FFFFFF"
+	},
+	"RARE": {
+	  "name": "稀有",
+	  "color": "#0080FF"
+	},
+	"EPIC": {
+	  "name": "史诗",
+	  "color": "#8000FF"
+	},
+	"LEGENDARY": {
+	  "name": "传说",
+	  "color": "#FF8000"
+	},
+	"SPECIAL": {
+	  "name": "神话",
+	  "color": "#FF0080"
+	}
+  }
+}

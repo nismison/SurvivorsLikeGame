@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1jwxddh4iw7a"]
+
+[ext_resource type="Texture2D" uid="uid://c511iceka5rmq" path="res://Assets/Projectile/Food.png" id="1_e05o2"]
+[ext_resource type="Script" uid="uid://dha20ab4xwyt5" path="res://Script/drop_item.gd" id="1_wvsx8"]
+[ext_resource type="PackedScene" uid="uid://b37mrtdhbeqwu" path="res://Scenes/GUI/item_info_panel.tscn" id="2_n14ai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvsx8"]
+radius = 18.1108
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n14ai"]
+atlas = ExtResource("1_e05o2")
+region = Rect2(0, 16, 16, 16)
+
+[node name="DropItem" type="Node2D"]
+z_index = 1
+script = ExtResource("1_wvsx8")
+item_info_panel_scene = ExtResource("2_n14ai")
+
+[node name="DropItemArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropItemArea"]
+shape = SubResource("CircleShape2D_wvsx8")
+
+[node name="DropItemSprite" type="Sprite2D" parent="DropItemArea"]
+texture = SubResource("AtlasTexture_n14ai")

@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dtll6jagekun5"]
+
+[ext_resource type="FontFile" uid="uid://k5xwhw5komqi" path="res://Assets/Fonts/fusion-pixel.ttc" id="1_xguql"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xguql"]
+
+[resource]
+Label/font_sizes/font_size = 10
+Label/fonts/font = ExtResource("1_xguql")
+Panel/styles/panel = SubResource("StyleBoxFlat_xguql")
