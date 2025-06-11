@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://de40i1ga5235w"]
+[gd_scene load_steps=42 format=3 uid="uid://de40i1ga5235w"]
 
 [ext_resource type="Script" uid="uid://rvjyk781nx5x" path="res://Scenes/player.gd" id="1_y8w33"]
 [ext_resource type="Shader" uid="uid://dufwfkrw0frc3" path="res://Resources/Shader/Based/flash_white.gdshader" id="3_3smsa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bx5b80acl8v7c" path="res://Assets/Players/Satyr.png" id="5_fkybt"]
 [ext_resource type="Shader" uid="uid://bn82lc46dctgb" path="res://Resources/Shader/Based/hurt_sfx.gdshader" id="5_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://clo86nmidalf7" path="res://Scenes/GUI/action_tip.tscn" id="6_x3wgy"]
+[ext_resource type="PackedScene" uid="uid://bg2oiykm3a2x8" path="res://Scenes/GUI/player_relic_ui.tscn" id="7_3smsa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
 shader = ExtResource("3_3smsa")
@@ -256,6 +257,7 @@ z_index = 5
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_y8w33")
+god_mode = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_8erm5")
@@ -306,11 +308,22 @@ visible = false
 position = Vector2(0, -19)
 scale = Vector2(0.5, 0.5)
 
-[node name="PlayerStatusUI" parent="." instance=ExtResource("5_3smsa")]
-anchors_preset = 10
-anchor_bottom = 0.0
+[node name="PlayerUI" type="HBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
 offset_left = -312.0
-offset_top = -168.0
+offset_top = -176.0
 offset_right = 312.0
-offset_bottom = -144.0
-grow_vertical = 1
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerStatusUI" parent="PlayerUI" instance=ExtResource("5_3smsa")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerRelicUI" parent="PlayerUI" instance=ExtResource("7_3smsa")]
+layout_mode = 2
+size_flags_horizontal = 3

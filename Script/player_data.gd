@@ -3,8 +3,8 @@ extends Node
 var is_dead: bool = false
 var current_health: int
 var current_armor: int
-var max_health: int = 1
-var max_armor: int = 1
+var max_health: int = 5
+var max_armor: int = 3
 
 var weapon: String = "fazhang" # 当前武器
 
@@ -24,7 +24,7 @@ var attack_speed: float = 5.0  # 基础攻速
 var attack_speed_modifier: float = 0.0  # 攻速修正
 var attack_speed_total: float  # 总攻速
 
-var item_list: Array[Item]  # 当前圣物列表
+var relic_list: Array[Item] = []  # 当前圣物列表
 
 
 #var player_level: int = 1
@@ -34,6 +34,7 @@ var item_list: Array[Item]  # 当前圣物列表
 
 signal health_changed
 signal player_dead
+signal relic_changed
 #signal level_up(new_level)
 
 func take_player_damage() -> void:
@@ -82,3 +83,8 @@ func caculate_attack_speed() -> void:
 func caculate_atk_distance() -> void:
 	# 攻击距离 = 基础攻击距离 + ( 基础攻击距离 * 攻击距离修正 )
 	atk_distance_total = atk_distance + atk_distance * atk_distance_modifier
+
+
+func relic_add(item: Item) -> void:
+	relic_list.append(item)
+	relic_changed.emit()

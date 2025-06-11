@@ -15,3 +15,6 @@ y_sort_enabled = true
 
 [node name="PlantEnemy" parent="Characters" instance=ExtResource("3_fo5ed")]
 position = Vector2(-143, -81)
+
+[node name="PlantEnemy2" parent="Characters" instance=ExtResource("3_fo5ed")]
+position = Vector2(-115, 25)

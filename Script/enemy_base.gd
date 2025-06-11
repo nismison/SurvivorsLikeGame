@@ -120,15 +120,14 @@ func genarate_drop_item() -> void:
 	var drop_item_id = all_relic_items[random_index]
 
 	var relic_object = ItemDatabase.get_item_resource(drop_item_id)
+	print("生成的drop_item ID: ", relic_object, " 地址: ", str(relic_object.get_instance_id()))
+
 	
 	print("掉落物品： %s" % relic_object.name)
 	
-	# TODO 这里的函数要改到DropItem里面，到时候只传入relic_object就可以了，其他自动显示
 	var drop_item_scene = preload("res://Scenes/drop_item.tscn")
 	var drop_item_instant = drop_item_scene.instantiate()
-	drop_item_instant.drop_item_id = relic_object.id
-	drop_item_instant.get_node("DropItemArea/DropItemSprite").texture = relic_object.icon
+	drop_item_instant.drop_item = relic_object
 	drop_item_instant.global_position = global_position
 	
-	#get_tree().get_root().add_child(drop_item_instant)
 	get_tree().get_root().call_deferred("add_child", drop_item_instant)

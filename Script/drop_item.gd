@@ -2,26 +2,30 @@ extends Node2D
 class_name DropItem
 
 @onready var drop_item_area: Area2D = $DropItemArea
+@onready var drop_item_sprite: Sprite2D = $DropItemArea/DropItemSprite
 
 @export var item_info_panel_scene: PackedScene = null
+@export var pickup_item_fx_scene: PackedScene = null
 
 var item_info_panel: Node = null
-var drop_item_id: int  # 掉落物品的ID
+var drop_item: Item = null  # 掉落物品对象，怪物死亡后随机生成，并在add_child之前赋值
+var is_on_item: bool = false  # 是否碰到掉落物
 
 
 func _ready() -> void:
+	print("DropItem 实例ID: ", self.get_instance_id())
+	
+	drop_item_sprite.texture = drop_item.icon
+	
 	drop_item_area.body_entered.connect(_on_body_entered)
 	drop_item_area.body_exited.connect(_on_body_exited)
 
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		if item_info_panel_scene == null:
-			print("没有设置 item_info_panel 场景")
-			return
+		is_on_item = true
 		
-		var item = ItemDatabase.get_item_resource(drop_item_id)
-		
+		var item = ItemDatabase.get_item_resource(drop_item.id)
 		item_info_panel = item_info_panel_scene.instantiate()
 		item_info_panel.item_name = item.name
 		item_info_panel.item_describe = item.description
@@ -40,7 +44,7 @@ func _on_body_entered(body: Node2D) -> void:
 		var panel_size = item_info_panel.size
 		var target_position = self.global_position
 		target_position.x -= panel_size.x / 2  # 水平居中
-		target_position.y -= panel_size.y + 10  # 在掉落物上方，留10像素间距
+		target_position.y -= panel_size.y + 15  # 在掉落物上方，留10像素间距
 
 		item_info_panel.global_position = target_position
 	
@@ -48,7 +52,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		print("玩家离开道具")
-		body.zoom_to(3)
+		is_on_item = false
 		if item_info_panel != null:
 			item_info_panel.queue_free()
 
@@ -56,4 +60,15 @@ func _on_body_exited(body: Node2D) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	# 交互
 	if event.is_action_pressed("action"):
-		pass
+		if not is_on_item: return
+		
+		PlayerData.relic_add(drop_item)
+		
+		var pickup_item_fx = pickup_item_fx_scene.instantiate()
+		pickup_item_fx.global_position.x = global_position.x
+		pickup_item_fx.global_position.y = global_position.y - 15
+		
+		get_tree().get_root().add_child(pickup_item_fx)
+		print("销毁 DropItem 实例ID: ", self.get_instance_id())
+		
+		queue_free()
