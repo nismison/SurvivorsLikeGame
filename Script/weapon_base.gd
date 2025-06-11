@@ -218,6 +218,8 @@ func _on_fire_timer_timeout():
 
 # 射击相关函数
 func shoot_bullet() -> void:
+	if PlayerData.is_dead: return
+	
 	if bullet_scene == null:
 		print("武器未设置子弹场景")
 		return
