@@ -3,6 +3,7 @@ extends EnemyBase
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_shape: CollisionShape2D = $AttackArea/AttackShape
 @onready var attack_cd_timer: Timer = $AttackCDTimer
+@onready var hurt_area: Area2D = $HurtArea
 
 var ready_to_attack: bool
 
@@ -11,11 +12,13 @@ var ready_to_attack: bool
 func init_enemy() -> void:
 	enemy_sprite = $AnimatedSprite2D
 	min_distance_to_player = 30
-	enemy_health = 1
 	ready_to_attack = true
 	attack_shape.disabled = true
 	attack_cd_timer.timeout.connect(_on_attack_cd_timeout)
+	# 攻击判定
 	attack_area.area_entered.connect(_on_attack_area_entered)
+	# 受击判定
+	hurt_area.area_entered.connect(_on_hurt_area_entered)
 
 
 func handle_behavior(delta: float):
@@ -76,3 +79,10 @@ func _on_attack_cd_timeout() -> void:
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group("player"):
 		area.owner.hurted(attack_damage)
+	
+
+# 受击
+func _on_hurt_area_entered(bullet: Area2D) -> void:
+	if bullet.is_in_group("bullet"):
+		take_damage(bullet.damage)
+		bullet.spawn_explosion()

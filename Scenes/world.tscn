@@ -8,6 +8,8 @@
 [node name="World" type="Node2D"]
 script = ExtResource("1_8j60k")
 enemy_scene = ExtResource("3_fo5ed")
+spawn_interval = 0.5
+max_enemies = 100
 
 [node name="InfiniteMapGenerator" parent="." instance=ExtResource("1_5a7ea")]
 

@@ -44,8 +44,8 @@ animations = [{
 }]
 
 [node name="FireBall" type="Area2D"]
-collision_layer = 4
-collision_mask = 10
+collision_layer = 32
+collision_mask = 16
 script = ExtResource("1_nyah3")
 explosion_scene = ExtResource("2_jqckr")
 metadata/_custom_type_script = "uid://b4vd3ci67h3wr"

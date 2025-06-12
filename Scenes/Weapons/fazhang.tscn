@@ -7,8 +7,6 @@
 [node name="Fazhang" type="Node2D"]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_igpy5")
-weapon_name = "火焰法杖"
-weapon_des = "一把火焰法杖，可以发射火球"
 bullet_scene = ExtResource("2_udbhl")
 bullet_spawn_offset = 10.0
 metadata/_custom_type_script = "uid://cnfs7g50iuqlh"

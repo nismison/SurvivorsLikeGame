@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dgu4l0wgj1v8m"]
 
 [ext_resource type="Texture2D" uid="uid://cjonfoihsdsnk" path="res://Assets/Projectile/FireBallExploed.png" id="1_i34va"]
-[ext_resource type="Script" uid="uid://b4rgpdywbcouy" path="res://Scene/BulletTypes/fire_ball_explode.gd" id="1_uupqv"]
+[ext_resource type="Script" uid="uid://b4rgpdywbcouy" path="res://Scenes/BulletTypes/fire_ball_explode.gd" id="1_uupqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x30dj"]
 atlas = ExtResource("1_i34va")
