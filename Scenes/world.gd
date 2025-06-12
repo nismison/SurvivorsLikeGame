@@ -2,8 +2,8 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var spawn_distance: float = 20.0   # 距离摄像机多远生成
-@export var spawn_interval: float = 2.0    # 生成间隔（秒）
-@export var max_enemies: int = 10          # 最大敌人数量
+@export var spawn_interval: float = 0.5    # 生成间隔（秒）
+@export var max_enemies: int = 100          # 最大敌人数量
 
 @onready var characters_node: Node2D = $Characters
 

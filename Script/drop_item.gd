@@ -13,9 +13,13 @@ var is_on_item: bool = false  # 是否碰到掉落物
 
 
 func _ready() -> void:
-	print("DropItem 实例ID: ", self.get_instance_id())
-	
+	# 修改掉落物贴图
 	drop_item_sprite.texture = drop_item.icon
+	# 修改尺寸，防止掉落物贴图过大
+	var width = drop_item_sprite.get_rect().size.x
+	if width > 24:
+		var scale_factor = 24 / width
+		drop_item_sprite.scale = Vector2(scale_factor, scale_factor)
 	
 	drop_item_area.body_entered.connect(_on_body_entered)
 	drop_item_area.body_exited.connect(_on_body_exited)
@@ -45,7 +49,6 @@ func _on_body_entered(body: Node2D) -> void:
 	
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("玩家离开道具")
 		is_on_item = false
 		if item_info_panel != null:
 			item_info_panel.queue_free()
@@ -56,13 +59,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("action"):
 		if not is_on_item: return
 		
-		PlayerData.relic_add(drop_item)
+		if drop_item.item_type == "圣物":
+			PlayerData.relic_add(drop_item)
+		elif drop_item.item_type == "武器":
+			PlayerData.switch_weapon(drop_item.id)
 		
 		var pickup_item_fx = pickup_item_fx_scene.instantiate()
 		pickup_item_fx.global_position.x = global_position.x
 		pickup_item_fx.global_position.y = global_position.y - 15
 		
 		get_tree().get_root().add_child(pickup_item_fx)
-		print("销毁 DropItem 实例ID: ", self.get_instance_id())
-		
 		queue_free()

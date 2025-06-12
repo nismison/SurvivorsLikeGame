@@ -13,6 +13,40 @@
 		"heal": 50
 	  }
 	},
+	{
+	  "id": 10001,
+	  "name": "幻晶脉冲枪",
+	  "description": "枪身由神秘幻彩晶体拼接而成，能量流转如流动霓虹",
+	  "icon_path": "res://Resources/ItemsIcon/10001.tres",
+	  "scene": "res://Scenes/Weapons/crystapulse.tscn",
+	  "attack_speed": 3.0,
+	  "damage": 50.0,
+	  "atk_distance": 300.0,
+	  "price": 50,
+	  "stack_size": 10,
+	  "item_type": "WEAPON",
+	  "rarity": "EPIC",
+	  "effects": {
+		"heal": 50
+	  }
+	},
+	{
+	  "id": 10002,
+	  "name": "火术法杖",
+	  "description": "火元素王权的象征，曾随上古焰灵法师征战混沌",
+	  "icon_path": "res://Resources/ItemsIcon/10002.tres",
+	  "scene": "res://Scenes/Weapons/fazhang.tscn",
+	  "attack_speed": 2.0,
+	  "damage": 20.0,
+	  "atk_distance": 200.0,
+	  "price": 50,
+	  "stack_size": 10,
+	  "item_type": "WEAPON",
+	  "rarity": "COMMON",
+	  "effects": {
+		"heal": 50
+	  }
+	},
   ],
   "item_types": {
 	"RELIC": "圣物",

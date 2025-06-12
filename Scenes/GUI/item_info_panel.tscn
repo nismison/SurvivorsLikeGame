@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b37mrtdhbeqwu"]
+[gd_scene load_steps=10 format=3 uid="uid://b37mrtdhbeqwu"]
 
 [ext_resource type="Texture2D" uid="uid://dx2tsbnvebbw2" path="res://Assets/GUI/GUI.png" id="1_55b22"]
 [ext_resource type="Script" uid="uid://dhfog02udf24j" path="res://Scenes/GUI/item_info_panel.gd" id="1_e13jd"]
-[ext_resource type="Texture2D" uid="uid://c511iceka5rmq" path="res://Assets/Projectile/Food.png" id="2_e13jd"]
+[ext_resource type="Texture2D" uid="uid://cvvsjly00wocu" path="res://Resources/ItemsIcon/10002.tres" id="3_p2845"]
 [ext_resource type="Texture2D" uid="uid://bb616t5haov2h" path="res://Assets/GUI/KeyboardIcons/keyboard_E_1.png" id="4_p2845"]
 [ext_resource type="Texture2D" uid="uid://cn7i821byadde" path="res://Assets/GUI/KeyboardIcons/keyboard_E_2.png" id="5_muunp"]
 
@@ -13,10 +13,6 @@ region = Rect2(0, 96, 48, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_e13jd"]
 atlas = ExtResource("1_55b22")
 region = Rect2(49, 97, 30, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p2845"]
-atlas = ExtResource("2_e13jd")
-region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_muunp"]
 color = Color(0.721569, 0.435294, 0.313726, 1)
@@ -70,7 +66,7 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.156863, 0.141176, 0.203922, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "芭娜娜"
 
 [node name="ItemInfoContainer" type="MarginContainer" parent="."]
@@ -89,11 +85,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="ItemIcon" type="TextureRect" parent="ItemInfoContainer/VBoxContainer/ItemIconContainer"]
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_p2845")
+texture = ExtResource("3_p2845")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ItemInfoContainer/VBoxContainer"]
 layout_mode = 2

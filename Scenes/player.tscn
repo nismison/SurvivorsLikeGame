@@ -283,7 +283,7 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)
 
 [node name="HurtArea" type="Area2D" parent="."]
 collision_mask = 0
@@ -313,10 +313,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -312.0
-offset_top = -176.0
-offset_right = 312.0
-offset_bottom = -128.0
+offset_left = -376.0
+offset_top = -208.0
+offset_right = 376.0
+offset_bottom = -160.0
 grow_horizontal = 2
 grow_vertical = 2
 

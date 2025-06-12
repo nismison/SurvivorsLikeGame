@@ -2,10 +2,11 @@ extends Area2D
 
 class_name BulletBase
 
+@onready var bullet_explode: AnimatedSprite2D = $BulletExplode
+@onready var bullet: Node2D = $Bullet
 
-@export var explosion_scene: PackedScene  # ⬅️ 指向爆炸特效
+
 @export var speed := 300.0
-@export var damage: float = 20
 
 var direction := Vector2.ZERO
 var start_position: Vector2
@@ -32,9 +33,10 @@ func spawn_explosion():
 		return
 	
 	exploded = true
-	var explosion = explosion_scene.instantiate()
-	explosion.global_position = global_position
-	get_tree().current_scene.add_child(explosion)
+	bullet.visible = false
+	bullet_explode.visible = true
+	bullet_explode.play("explode")
+	await bullet_explode.animation_finished
 	
 	exploded = false
 	queue_free()

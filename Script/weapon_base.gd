@@ -4,7 +4,7 @@ class_name WeaponBase
 # 射击相关参数
 @export var bullet_scene: PackedScene = null
 @export var bullet_spawn_offset: float = 0.0
-var attack_speed: float = 1.0                  # 攻击速度 (次/秒)
+var attack_speed: float                        # 攻击速度 (次/秒)
 var auto_fire: bool = true                     # 是否支持连发 (按住射击)
 
 # 射击相关变量

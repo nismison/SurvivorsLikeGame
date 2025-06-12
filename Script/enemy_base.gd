@@ -77,11 +77,11 @@ func handle_behavior(delta: float):
 		enemy_sprite.play("idle")
 
 # 造成伤害
-func take_damage(damage: float):
+func take_damage():
 	if enemy_godmode:
 		print("Enemy 无敌状态中！")
 		return
-	
+	var damage = PlayerData.damage_total
 	print("Enemy 被击中了！伤害：" + str(damage))
 	flash_white()
 	calculate_health(damage)
@@ -102,7 +102,8 @@ func calculate_health(damage: float):
 	
 	# 敌人死亡
 	if enemy_health <= 0:
-		#genarate_drop_item()
+		# TODO 敌人死亡掉落
+		genarate_drop_item()
 		queue_free()
 
 # 获取到玩家的距离

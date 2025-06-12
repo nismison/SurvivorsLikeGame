@@ -11,6 +11,10 @@ class_name Item
 @export var stack_size: int = 1
 @export var item_type: String = "圣物"
 @export var rarity: String = "普通"
+@export var scene: String
+@export var attack_speed: float
+@export var damage: float
+@export var atk_distance: float
 
 # 道具属性字典（用于存储额外属性）
 @export var stats: Dictionary = {}
@@ -50,6 +54,10 @@ static func from_json(json_data: Dictionary) -> Item:
 	item.icon_path = json_data.get("icon_path", "")
 	item.price = json_data.get("price", 0)
 	item.stack_size = json_data.get("stack_size", 1)
+	item.scene = json_data.get("scene", "")
+	item.attack_speed = json_data.get("attack_speed", 0)
+	item.damage = json_data.get("damage", 0)
+	item.atk_distance = json_data.get("atk_distance", 0)
 	
 	# 道具类型转换
 	var type_str = json_data.get("item_type", "RELIC")

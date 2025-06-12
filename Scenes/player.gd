@@ -20,6 +20,8 @@ var dash_direction = Vector2.ZERO
 # 摄像机缩放
 var current_tween: Tween  # 保存当前的Tween引用
 
+var cur_weapon_instance: Node2D  # 当前武器实例
+
 
 # 缩放到指定值的函数
 func zoom_to(target_zoom_value: float, duration: float = 0.3):
@@ -37,8 +39,9 @@ func zoom_to(target_zoom_value: float, duration: float = 0.3):
 
 
 func _ready():
-	_init_weapon()  # 初始化武器场景、绑定挂点
+	init_weapon()  # 初始化武器场景、绑定挂点
 	PlayerData.player_dead.connect(on_player_dead)
+	PlayerData.weapon_changed.connect(init_weapon)
 	
 
 func _physics_process(delta: float) -> void:
@@ -65,10 +68,13 @@ func _physics_process(delta: float) -> void:
 	
 
 # 初始化武器场景
-func _init_weapon() -> void:
-	var weapon_scene = load("res://Scenes/Weapons/%s.tscn" % PlayerData.weapon)
-	var weapon_instance = weapon_scene.instantiate()
-	weapon_socket.add_child(weapon_instance)
+func init_weapon() -> void:
+	if cur_weapon_instance:
+		cur_weapon_instance.queue_free()
+
+	var weapon_scene = load(PlayerData.weapon.scene)
+	cur_weapon_instance = weapon_scene.instantiate()
+	weapon_socket.add_child(cur_weapon_instance)
 	#weapon_instance.target_node = weapon_socket  # 设置跟随目标为Socket
 
 

@@ -6,9 +6,13 @@ var current_armor: int
 var max_health: int = 5
 var max_armor: int = 3
 
-var weapon: String = "fazhang" # 当前武器
+var weapon: Item = null # 当前武器
 
-var atk_distance: float = 200  # 攻击距离
+var damage: float  # 基础伤害
+var damage_modifier: float = 0.0  # 伤害修正
+var damage_total: float = 0.0  # 总伤害
+
+var atk_distance: float  # 攻击距离
 var atk_distance_modifier: float = 0.0  # 攻击距离修正
 var atk_distance_total: float = 0.0  # 总攻击距离
 
@@ -20,7 +24,7 @@ var dash_speed: float  # 基础闪避速度 -> 移动速度 * 2.5
 var dash_speed_modifier: float = 0.0  # 闪避速度修正
 var dash_speed_total: float  # 总闪避速度
 
-var attack_speed: float = 5.0  # 基础攻速
+var attack_speed: float  # 基础攻速
 var attack_speed_modifier: float = 0.0  # 攻速修正
 var attack_speed_total: float  # 总攻速
 
@@ -35,6 +39,7 @@ var relic_list: Array[Item] = []  # 当前圣物列表
 signal health_changed
 signal player_dead
 signal relic_changed
+signal weapon_changed
 #signal level_up(new_level)
 
 func take_player_damage() -> void:
@@ -53,10 +58,23 @@ func init_player_data() -> void:
 	is_dead = false
 	current_health = max_health
 	current_armor = max_armor
+	# 初始武器
+	weapon = ItemDatabase.get_item_resource(10002)
+	damage = weapon.damage
+	attack_speed = weapon.attack_speed
+	atk_distance = weapon.atk_distance
+	
+	caculate_damage()
 	caculate_move_speed()
 	caculate_dash_speed()
 	caculate_attack_speed()
 	caculate_atk_distance()
+
+
+# 计算伤害
+func caculate_damage() -> void:
+	# 总伤害 = 基础伤害 + ( 基础伤害 * 伤害修正 )
+	damage_total = damage + damage * damage_modifier
 
 
 # 计算移动速度
@@ -89,3 +107,16 @@ func caculate_atk_distance() -> void:
 func relic_add(item: Item) -> void:
 	relic_list.append(item)
 	relic_changed.emit()
+
+
+# 切换武器
+func switch_weapon(weapon_id: int) -> void:
+	weapon = ItemDatabase.get_item_resource(weapon_id)
+	attack_speed = weapon.attack_speed
+	damage = weapon.damage
+	atk_distance = weapon.atk_distance
+	
+	caculate_attack_speed()
+	caculate_damage()
+	caculate_atk_distance()
+	weapon_changed.emit()

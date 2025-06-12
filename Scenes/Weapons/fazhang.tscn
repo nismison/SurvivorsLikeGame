@@ -1,14 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpvysj6hgrs6r"]
 
-[ext_resource type="Script" uid="uid://bmky8xume4pgg" path="res://Scenes/Weapons/fazhang.gd" id="1_igpy5"]
+[ext_resource type="Script" uid="uid://cnfs7g50iuqlh" path="res://Script/weapon_base.gd" id="1_80084"]
 [ext_resource type="Texture2D" uid="uid://bwcn4wxehvjsx" path="res://Assets/Projectile/Props.png" id="2_tkoas"]
 [ext_resource type="PackedScene" uid="uid://cee0ywb3hwe11" path="res://Scenes/BulletTypes/fire_ball.tscn" id="2_udbhl"]
 
 [node name="Fazhang" type="Node2D"]
 scale = Vector2(0.3, 0.3)
-script = ExtResource("1_igpy5")
+script = ExtResource("1_80084")
 bullet_scene = ExtResource("2_udbhl")
-bullet_spawn_offset = 10.0
 metadata/_custom_type_script = "uid://cnfs7g50iuqlh"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

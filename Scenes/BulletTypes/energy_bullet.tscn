@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://vsparq3huik7"]
+
+[ext_resource type="Script" uid="uid://b4vd3ci67h3wr" path="res://Script/bullet_base.gd" id="1_tyneu"]
+[ext_resource type="Texture2D" uid="uid://dngqds5mic0ib" path="res://Assets/Projectile/Bullet/EnergyBullet.png" id="3_tyneu"]
+[ext_resource type="Texture2D" uid="uid://dvckikhas12nu" path="res://Assets/Projectile/Bullet/EnergyBulletExplode.png" id="4_gn1jc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gn1jc"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyneu"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn1jc"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8nyv"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2b4d"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpxmg"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoys4"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(320, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vyap"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(384, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfifh"]
+atlas = ExtResource("4_gn1jc")
+region = Rect2(448, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23squ"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyneu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn1jc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8nyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2b4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpxmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoys4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vyap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfifh")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 16.0
+}]
+
+[node name="EnergyBullet" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("1_tyneu")
+metadata/_custom_type_script = "uid://b4vd3ci67h3wr"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.68)
+shape = SubResource("CircleShape2D_gn1jc")
+
+[node name="Bullet" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("3_tyneu")
+
+[node name="BulletExplode" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 6
+sprite_frames = SubResource("SpriteFrames_23squ")
+animation = &"explode"
+frame_progress = 1.0

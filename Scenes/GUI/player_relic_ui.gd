@@ -26,11 +26,8 @@ func clean_relic_ui() -> void:
 
 # 绘制当前携带圣物UI
 func draw_relic_ui() -> void:
-	print("len: %s" % len(PlayerData.relic_list))
 	for index in len(PlayerData.relic_list):
-		print("index: %s" % index)
 		var item: Item = PlayerData.relic_list[index]
-		print("Draw Relic Item: %s" % item)
 		var texture_rect := create_relic_icon(item.icon)
 		texture_rect.mouse_entered.connect(_on_relicui_mouse_entered.bind(item))
 		texture_rect.mouse_exited.connect(_on_relicui_mouse_exited.bind(item))
@@ -40,7 +37,8 @@ func draw_relic_ui() -> void:
 func create_relic_icon(texture: Texture2D) -> TextureRect:
 	var texture_rect := TextureRect.new()
 	texture_rect.texture = texture
-	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP
+	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	return texture_rect
 	
 

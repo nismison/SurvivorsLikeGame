@@ -84,5 +84,5 @@ func _on_attack_area_entered(area: Area2D) -> void:
 # 受击
 func _on_hurt_area_entered(bullet: Area2D) -> void:
 	if bullet.is_in_group("bullet"):
-		take_damage(bullet.damage)
+		take_damage()
 		bullet.spawn_explosion()
