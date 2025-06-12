@@ -25,14 +25,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_on_item = true
 		
-		var item = ItemDatabase.get_item_resource(drop_item.id)
 		item_info_panel = item_info_panel_scene.instantiate()
-		item_info_panel.item_name = item.name
-		item_info_panel.item_describe = item.description
-		item_info_panel.item_icon = item.icon
-		item_info_panel.item_type = item.item_type
-		item_info_panel.item_quality = item.rarity
-		item_info_panel.item_quality_color = item.get_rarity_color()
+		item_info_panel.item = drop_item
 		
 		# 先添加到场景树中，这样才能获取到面板的尺寸
 		get_tree().get_root().add_child(item_info_panel)

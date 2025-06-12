@@ -85,6 +85,7 @@ func caculate_atk_distance() -> void:
 	atk_distance_total = atk_distance + atk_distance * atk_distance_modifier
 
 
+# 新增携带圣物
 func relic_add(item: Item) -> void:
 	relic_list.append(item)
 	relic_changed.emit()
