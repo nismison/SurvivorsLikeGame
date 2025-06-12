@@ -18,7 +18,7 @@ class_name Item
 
 # 道具属性字典（用于存储额外属性）
 @export var stats: Dictionary = {}
-@export var effects: Dictionary = {}
+@export var modifier: Dictionary = {}  # 加成属性
 @export var quest_id: int = 0
 
 # 道具类型枚举
@@ -69,7 +69,7 @@ static func from_json(json_data: Dictionary) -> Item:
 	
 	# 额外属性
 	item.stats = json_data.get("stats", {})
-	item.effects = json_data.get("effects", {})
+	item.modifier = json_data.get("modifier", {})
 	item.quest_id = json_data.get("quest_id", 0)
 	
 	# 加载图标
@@ -112,11 +112,11 @@ func get_info() -> String:
 		for stat_name in stats:
 			info += "\n  %s: %s" % [stat_name, stats[stat_name]]
 	
-	# 添加效果信息
-	if not effects.is_empty():
-		info += "\n效果:"
-		for effect_name in effects:
-			info += "\n  %s: %s" % [effect_name, effects[effect_name]]
+	# 添加加成信息
+	#if not modifier.is_empty():
+		#info += "\n加成:"
+		#for modifier_name in modifier:
+			#info += "\n  %s: %s" % [modifier_name, modifier[modifier_name]]
 	
 	return info
 

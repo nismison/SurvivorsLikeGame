@@ -14,7 +14,6 @@ script = ExtResource("1_8j60k")
 y_sort_enabled = true
 
 [node name="Player" parent="Characters" instance=ExtResource("2_8j60k")]
-god_mode = false
 
 [node name="Teleportation" parent="Characters" instance=ExtResource("5_fo5ed")]
 position = Vector2(-174, -59)

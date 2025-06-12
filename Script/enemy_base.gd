@@ -26,7 +26,6 @@ var current_state: EnemyState = EnemyState.IDLE
 func _ready():
 	# 子类初始化方法
 	init_enemy()
-	print("敌人血量：" + str(enemy_health))
 	
 	add_to_group("enemy")
 	set_collision_layer_value(1, false)  # 不是player

@@ -3,14 +3,14 @@
 	{
 	  "id": 10000,
 	  "name": "芭娜娜",
-	  "description": "“我喜欢滑着走” —— 紫皮大蒜\n\n小幅增加冲刺速度",
+	  "description": "“我喜欢滑着走” —— 紫皮大蒜\n冲刺速度 +20%",
 	  "icon_path": "res://Resources/ItemsIcon/10000.tres",
 	  "price": 50,
 	  "stack_size": 10,
 	  "item_type": "RELIC",
 	  "rarity": "EPIC",
-	  "effects": {
-		"heal": 50
+	  "modifier": {
+		"dash_speed": 0.2
 	  }
 	},
 	{
@@ -26,9 +26,6 @@
 	  "stack_size": 10,
 	  "item_type": "WEAPON",
 	  "rarity": "LEGENDARY",
-	  "effects": {
-		"heal": 50
-	  }
 	},
 	{
 	  "id": 10002,
@@ -43,9 +40,6 @@
 	  "stack_size": 10,
 	  "item_type": "WEAPON",
 	  "rarity": "COMMON",
-	  "effects": {
-		"heal": 50
-	  }
 	},
   ],
   "item_types": {

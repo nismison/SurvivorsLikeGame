@@ -64,7 +64,11 @@ func init_player_data() -> void:
 	damage = weapon.damage
 	attack_speed = weapon.attack_speed
 	atk_distance = weapon.atk_distance
+	caculate_all()
 	
+
+# 重新计算所有属性 (更新属性)
+func caculate_all() -> void:
 	caculate_damage()
 	caculate_move_speed()
 	caculate_dash_speed()
@@ -104,22 +108,34 @@ func caculate_atk_distance() -> void:
 	atk_distance_total = atk_distance + atk_distance * atk_distance_modifier
 
 
+# 传入物品自动计算属性加成
+func caculate_modifier(item: Item) -> void:
+	if item.modifier.is_empty(): return
+	
+	for modifier_name in item.modifier:
+		var modifier_value = item.modifier[modifier_name]
+		
+		if modifier_name == "dash_speed":
+			dash_speed_modifier += modifier_value
+	
+	caculate_all()
+
 # 新增携带圣物
 func relic_add(item: Item) -> void:
 	relic_list.append(item)
+	caculate_modifier(item)
 	relic_changed.emit()
 
 
 # 切换武器
 func switch_weapon(weapon_id: int) -> void:
+	var old_weapon = weapon  # 记录原先的武器，如果之前的武器有属性加成，在下面减掉
 	weapon = ItemDatabase.get_item_resource(weapon_id)
 	attack_speed = weapon.attack_speed
 	damage = weapon.damage
 	atk_distance = weapon.atk_distance
 	
-	caculate_attack_speed()
-	caculate_damage()
-	caculate_atk_distance()
+	caculate_all()
 	weapon_changed.emit()
 
 

@@ -85,5 +85,4 @@ func get_current_enemy_count() -> int:
 	for child in characters_node.get_children():
 		if child.scene_file_path.contains("Enemy"):
 			count += 1
-	print("敌人数量： %s" % count)
 	return count
