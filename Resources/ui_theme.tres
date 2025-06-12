@@ -5,6 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xguql"]
 
 [resource]
+Button/fonts/font = ExtResource("1_xguql")
 Label/font_sizes/font_size = 10
 Label/fonts/font = ExtResource("1_xguql")
 Panel/styles/panel = SubResource("StyleBoxFlat_xguql")
