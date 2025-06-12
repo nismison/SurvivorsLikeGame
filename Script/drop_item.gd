@@ -13,6 +13,33 @@ var is_on_item: bool = false  # 是否碰到掉落物
 
 
 func _ready() -> void:
+	# 掉落物背景
+	var drop_item_rarity = drop_item.rarity
+	var rarity_string: String
+	
+	if drop_item_rarity == "稀有":
+		rarity_string = "Rare"
+	elif drop_item_rarity == "史诗":
+		rarity_string = "Epic"
+	elif drop_item_rarity == "传说":
+		rarity_string = "Legendary"
+	elif drop_item_rarity == "神话":
+		rarity_string = "Special"
+	else:
+		rarity_string = "Common"
+	
+	var e_path = "DropItemArea/LootEffectBack/LootEffectBack"
+	var loot_effect_back: AnimatedSprite2D = get_node(e_path + rarity_string)
+	var loot_effect_front: AnimatedSprite2D = get_node(e_path + rarity_string)
+	
+	var tween1 = create_tween()
+	tween1.tween_property(loot_effect_back, "modulate:a", 1.0, 0.2)
+	tween1.set_ease(Tween.EASE_OUT)
+	
+	var tween2 = create_tween()
+	tween2.tween_property(loot_effect_front, "modulate:a", 1.0, 0.2)
+	tween2.set_ease(Tween.EASE_OUT)
+	
 	# 修改掉落物贴图
 	drop_item_sprite.texture = drop_item.icon
 	# 修改尺寸，防止掉落物贴图过大
@@ -23,6 +50,10 @@ func _ready() -> void:
 	
 	drop_item_area.body_entered.connect(_on_body_entered)
 	drop_item_area.body_exited.connect(_on_body_exited)
+	
+	await tween2.finished
+	tween1.kill()
+	tween2.kill()
 
 
 func _on_body_entered(body: Node2D) -> void:
