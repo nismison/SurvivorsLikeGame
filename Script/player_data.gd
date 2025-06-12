@@ -28,7 +28,14 @@ var attack_speed: float  # 基础攻速
 var attack_speed_modifier: float = 0.0  # 攻速修正
 var attack_speed_total: float  # 总攻速
 
+var bullet_count: int = 1  # 基础子弹数量
+var bullet_count_modifier: int = 0  # 子弹数量修正
+var bullet_count_total: int  # 总子弹数量
+var bullet_spread_degrees: float = 30.0 # 多子弹散射角度
+
 var relic_list: Array[Item] = []  # 当前圣物列表
+
+var random_spread: bool = false  # 道具效果：子弹会不规律散射
 
 
 #var player_level: int = 1
@@ -60,7 +67,7 @@ func init_player_data() -> void:
 	current_health = max_health
 	current_armor = max_armor
 	# 初始武器
-	weapon = ItemDatabase.get_item_resource(10002)
+	weapon = ItemDatabase.get_item_resource(10001)
 	damage = weapon.damage
 	attack_speed = weapon.attack_speed
 	atk_distance = weapon.atk_distance
@@ -74,6 +81,7 @@ func caculate_all() -> void:
 	caculate_dash_speed()
 	caculate_attack_speed()
 	caculate_atk_distance()
+	caculate_bullet_count()
 
 
 # 计算伤害
@@ -102,10 +110,16 @@ func caculate_attack_speed() -> void:
 	attack_speed_total = attack_speed + attack_speed * attack_speed_modifier
 
 
-# 计算攻击速度
+# 计算攻击距离
 func caculate_atk_distance() -> void:
 	# 攻击距离 = 基础攻击距离 + ( 基础攻击距离 * 攻击距离修正 )
 	atk_distance_total = atk_distance + atk_distance * atk_distance_modifier
+
+
+# 计算子弹数量
+func caculate_bullet_count() -> void:
+	# 子弹数量 = 基础子弹数量 + 子弹数量修正
+	bullet_count_total = bullet_count + bullet_count_modifier
 
 
 # 传入物品自动计算属性加成

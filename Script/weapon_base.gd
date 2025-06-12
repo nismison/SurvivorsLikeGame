@@ -229,15 +229,47 @@ func shoot_bullet() -> void:
 	# 记录射击时间
 	last_fire_time = time_accumulator
 	
-	var bullet = bullet_scene.instantiate()
-	var mouse_pos = get_global_mouse_position()
-	var direction = (mouse_pos - global_position).normalized()
-	var spawn_pos = global_position + direction * bullet_spawn_offset
+	for i in PlayerData.bullet_count_total:
+		print("当前第 %s 发子弹" % i)
+		var bullet = bullet_scene.instantiate().duplicate()
+		var mouse_pos = get_global_mouse_position()
+		var base_direction = (mouse_pos - global_position).normalized()
+		
+		# 计算角度偏移
+		var spread_angle = 0.0
+		if PlayerData.bullet_count_total > 1:
+			# 总的散射角度范围（度数）
+			var total_spread_degrees = PlayerData.bullet_spread_degrees
+			
+			# 转换为弧度
+			var total_spread = deg_to_rad(total_spread_degrees)
+			
+			# 计算每发子弹的角度偏移
+			var angle_step = total_spread / (PlayerData.bullet_count_total - 1)
+			spread_angle = -total_spread / 2 + i * angle_step
+		
+		# 随机角度偏移（道具效果）
+		var random_offset = 0.0
+		if PlayerData.random_spread:  # 假设有这样一个道具状态标志
+			# 随机偏移角度范围（度数）
+			var random_degrees = 90.0
+			
+			# 生成 -random_degrees 到 +random_degrees 度的随机偏移
+			random_offset = deg_to_rad(randf_range(-random_degrees, random_degrees))
+		
+		# 总的角度偏移 = 规律散射 + 随机偏移
+		var final_spread_angle = spread_angle + random_offset
+		
+		# 应用角度偏移
+		var direction = base_direction.rotated(final_spread_angle)
+		var spawn_pos = global_position + direction * bullet_spawn_offset
+		
+		bullet.global_position = spawn_pos
+		bullet.direction = direction
+		bullet.rotation = direction.angle()
+		print("旋转角度：%s" % bullet.rotation)
+		get_tree().current_scene.add_child(bullet)
 	
-	bullet.global_position = spawn_pos
-	bullet.direction = direction
-	bullet.rotation = direction.angle()
-	get_tree().current_scene.add_child(bullet)
 
 # 设置攻击速度 (运行时修改)
 func set_attack_speed(new_speed: float):
