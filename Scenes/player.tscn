@@ -254,7 +254,7 @@ shader_parameter/opacity = 0.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
-collision_mask = 0
+collision_mask = 64
 motion_mode = 1
 script = ExtResource("1_y8w33")
 god_mode = true

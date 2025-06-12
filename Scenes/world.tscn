@@ -3,12 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://qfy4alpok1ka" path="res://Scenes/infinite_map_generator.tscn" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://ctvet2qepboy1" path="res://Scenes/world.gd" id="1_8j60k"]
 [ext_resource type="PackedScene" uid="uid://de40i1ga5235w" path="res://Scenes/player.tscn" id="2_8j60k"]
-[ext_resource type="PackedScene" uid="uid://bgn42yltpkvht" path="res://Scenes/Enemy/plant_enemy.tscn" id="3_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://bv3axwxomkdte" path="res://Scenes/teleport_stone.tscn" id="5_fo5ed"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_8j60k")
-enemy_scene = ExtResource("3_fo5ed")
-max_enemies = 1
 
 [node name="InfiniteMapGenerator" parent="." instance=ExtResource("1_5a7ea")]
 
@@ -16,3 +14,7 @@ max_enemies = 1
 y_sort_enabled = true
 
 [node name="Player" parent="Characters" instance=ExtResource("2_8j60k")]
+god_mode = false
+
+[node name="Teleportation" parent="Characters" instance=ExtResource("5_fo5ed")]
+position = Vector2(-174, -59)

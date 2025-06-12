@@ -164,8 +164,6 @@ radius = 17.0
 
 [node name="PlantEnemy" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_6l243")
-collision_layer = 8
-collision_mask = 8
 script = ExtResource("1_0pd72")
 metadata/_custom_type_script = "uid://bfsx4swttxvqm"
 

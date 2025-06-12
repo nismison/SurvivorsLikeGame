@@ -87,6 +87,7 @@ action={
 2d_physics/layer_4="Enemy"
 2d_physics/layer_5="EnemyHurtArea"
 2d_physics/layer_6="Bullet"
+2d_physics/layer_7="阻挡区域"
 
 [rendering]
 

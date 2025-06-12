@@ -1,9 +1,8 @@
 extends Node2D
 
-@export var enemy_scene: PackedScene
-@export var spawn_distance: float = 20.0   # 距离摄像机多远生成
-@export var spawn_interval: float = 0.5    # 生成间隔（秒）
-@export var max_enemies: int = 100          # 最大敌人数量
+var spawn_distance: float = 20.0   # 距离摄像机多远生成
+var spawn_interval: float = 0.5    # 生成间隔（秒）
+var max_enemies: int = 100          # 最大敌人数量
 
 @onready var characters_node: Node2D = $Characters
 
@@ -25,8 +24,7 @@ func _spawn_enemy():
 	if get_current_enemy_count() >= max_enemies:
 		return
 	
-	if camera == null or enemy_scene == null:
-		return
+	if camera == null: return
 	
 	# 获取摄像机位置和视口大小
 	var camera_pos = camera.global_position
@@ -39,7 +37,12 @@ func _spawn_enemy():
 	# 生成随机位置（在摄像机范围外）
 	var spawn_pos = get_random_spawn_position(camera_rect)
 	
-	# 实例化敌人
+	# 实例化随机类型敌人
+	var enemy_types := ["goblin", "plant", "skeleton"]
+	var enemy_rand_type = enemy_types[randi_range(0, len(enemy_types) - 1)]
+	var enemy_scene_path := "res://Scenes/Enemy/%s_enemy.tscn" % enemy_rand_type
+	var enemy_scene = load(enemy_scene_path)
+	
 	var enemy = enemy_scene.instantiate()
 	characters_node.add_child(enemy)
 	enemy.global_position = spawn_pos

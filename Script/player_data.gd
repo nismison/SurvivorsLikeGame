@@ -40,6 +40,7 @@ signal health_changed
 signal player_dead
 signal relic_changed
 signal weapon_changed
+signal camera_zoom_changed
 #signal level_up(new_level)
 
 func take_player_damage() -> void:
@@ -120,3 +121,7 @@ func switch_weapon(weapon_id: int) -> void:
 	caculate_damage()
 	caculate_atk_distance()
 	weapon_changed.emit()
+
+
+func zoom_camera(zoom_value: float) -> void:
+	camera_zoom_changed.emit(zoom_value)

@@ -4,6 +4,7 @@ class_name BulletBase
 
 @onready var bullet_explode: AnimatedSprite2D = $BulletExplode
 @onready var bullet: Node2D = $Bullet
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 @export var speed := 300.0
@@ -15,6 +16,7 @@ var exploded := false
 
 func _ready() -> void:
 	add_to_group("bullet")
+	z_index = 6
 	
 	start_position = global_position
 
@@ -34,6 +36,7 @@ func spawn_explosion():
 	
 	exploded = true
 	bullet.visible = false
+	collision_shape.set_deferred("disabled", true)
 	bullet_explode.visible = true
 	bullet_explode.play("explode")
 	await bullet_explode.animation_finished

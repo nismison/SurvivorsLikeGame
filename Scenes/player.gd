@@ -42,6 +42,7 @@ func _ready():
 	init_weapon()  # 初始化武器场景、绑定挂点
 	PlayerData.player_dead.connect(on_player_dead)
 	PlayerData.weapon_changed.connect(init_weapon)
+	PlayerData.camera_zoom_changed.connect(zoom_to)
 	
 
 func _physics_process(delta: float) -> void:

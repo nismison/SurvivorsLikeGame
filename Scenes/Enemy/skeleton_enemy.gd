@@ -11,7 +11,7 @@ var ready_to_attack: bool
 # 初始化敌人数据
 func init_enemy() -> void:
 	enemy_sprite = $AnimatedSprite2D
-	min_distance_to_player = 30
+	min_distance_to_player = 50
 	ready_to_attack = true
 	attack_shape.disabled = true
 	attack_cd_timer.timeout.connect(_on_attack_cd_timeout)
@@ -57,10 +57,7 @@ func start_attack() -> void:
 	ready_to_attack = false
 	attack_cd_timer.start()
 	
-	# 预攻击动画
 	current_state = EnemyState.ATTACKING
-	enemy_sprite.play("pre_attack")
-	await enemy_sprite.animation_finished
 	
 	# 攻击动画
 	attack_shape.disabled = false

@@ -29,9 +29,12 @@ func _ready():
 	print("敌人血量：" + str(enemy_health))
 	
 	add_to_group("enemy")
-	#set_collision_layer_value(2, true)  # 指定为Enemy层
-	#set_collision_mask_value(3, true)   # 指定和Bullet碰撞
-	#set_collision_mask_value(4, true)   # 指定和Wall碰撞
+	set_collision_layer_value(1, false)  # 不是player
+	set_collision_mask_value(1, false)   # 不和player碰撞
+	
+	set_collision_layer_value(4, true)  # 指定为Enemy层
+	set_collision_layer_value(4, true)  # 和Enemy碰撞
+	set_collision_mask_value(7, true)   # 和阻挡区域碰撞
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	flash_material = enemy_sprite.material as ShaderMaterial
 	z_index = 5
