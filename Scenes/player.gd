@@ -15,6 +15,7 @@ class_name Player
 @onready var shaker: ShakerComponent2D = $Camera2D/Shaker
 @onready var dash_timer_ui: Node2D = $DashTimerUI
 
+
 @onready var weapon_socket = $WeaponSocket
 
 var dash_direction = Vector2.ZERO
@@ -41,10 +42,14 @@ func zoom_to(target_zoom_value: float, duration: float = 0.3):
 
 
 func _ready():
+	dash_cd_timer.timeout.connect(_on_dash_cd_timeout)
+	dash_timer.timeout.connect(_on_dash_timeout)
+	
 	PlayerData.inited.connect(init_weapon)  # 初始化武器场景、绑定挂点
 	PlayerData.player_dead.connect(on_player_dead)
 	PlayerData.weapon_changed.connect(init_weapon)
 	PlayerData.camera_zoom_changed.connect(zoom_to)
+	
 	
 
 func _physics_process(delta: float) -> void:
@@ -95,6 +100,7 @@ func start_dash() -> void:
 	var dash_cd = max(PlayerData.dash_cd_total, 0.1)
 	dash_cd_timer.wait_time = dash_cd
 	dash_timer_ui.move_line_simple(dash_cd)
+	
 	is_dashing = true
 	ready_to_dash = false
 	
@@ -105,15 +111,18 @@ func start_dash() -> void:
 	if dash_direction == Vector2.ZERO:
 		dash_direction = Vector2.RIGHT
 	
-	# 定时清除冲刺状态
 	dash_timer.start()
-	await dash_timer.timeout
-	is_dashing = false
-	
-	# 冲刺cd
 	dash_cd_timer.start()
-	await dash_cd_timer.timeout
+	
+
+
+func _on_dash_cd_timeout() -> void:
 	ready_to_dash = true
+	dash_timer_ui.visible = false
+
+
+func _on_dash_timeout() -> void:
+	is_dashing = false
 
 
 # 受击
@@ -139,6 +148,9 @@ func hurt_screen_sfx() -> void:
 
 
 func on_player_dead() -> void:
+	var death_effect = preload("res://Scenes/Effect/death_effect.tscn").instantiate()
+	add_child(death_effect)
+	death_effect.play_death_effect()
 	print("你嘎了")
 	zoom_to(5)
 	is_dead = true

@@ -1,0 +1,35 @@
+{
+	"level_0": {
+		"need_exp": 0
+	},
+	"level_1": {
+		"need_exp": 100
+	},
+	"level_2": {
+		"need_exp": 200
+	},
+	"level_3": {
+		"need_exp": 400
+	},
+	"level_4": {
+		"need_exp": 800
+	},
+	"level_5": {
+		"need_exp": 1600
+	},
+	"level_6": {
+		"need_exp": 3200
+	},
+	"level_7": {
+		"need_exp": 6400
+	},
+	"level_8": {
+		"need_exp": 12800
+	},
+	"level_9": {
+		"need_exp": 25600
+	},
+	"level_10": {
+		"need_exp": 51200
+	},
+}

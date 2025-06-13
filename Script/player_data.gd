@@ -29,11 +29,11 @@ var dash_cd_modifier: float = 0.0  # 闪避CD修正
 var dash_cd_total: float  # 总闪避CD
 
 var attack_speed: float  # 基础攻速
-var attack_speed_modifier: float = 0.0  # 攻速修正
+var attack_speed_modifier: float = 2.0  # 攻速修正
 var attack_speed_total: float  # 总攻速
 
 var bullet_count: int = 1  # 基础子弹数量
-var bullet_count_modifier: int = 0  # 子弹数量修正
+var bullet_count_modifier: int = 5  # 子弹数量修正
 var bullet_count_total: int  # 总子弹数量
 var bullet_spread_degrees: float = 30.0 # 多子弹散射角度
 
@@ -42,11 +42,9 @@ var relic_list: Array[Item] = []  # 当前圣物列表
 var random_spread: bool = false  # 道具效果：子弹会不规律散射
 var bullet_scale_modifier: float = 0.0  # 子弹大小修正
 
-
-#var player_level: int = 1
-#var player_exp: int = 0
-#var player_inventory: Array = []
-#var player_attack_speed: int = 2
+var exp: float = 0.0  # 人物经验值
+var exp_modifier: float = 0.0  # 获取经验值修正
+var level: int = 0  # 当前等级
 
 signal inited
 signal health_changed
@@ -54,7 +52,8 @@ signal player_dead
 signal relic_changed
 signal weapon_changed
 signal camera_zoom_changed
-#signal level_up(new_level)
+signal exp_changed
+signal level_up
 
 func take_player_damage() -> void:
 	if current_armor > 0:
@@ -77,6 +76,7 @@ func init_player_data() -> void:
 	damage = weapon.damage
 	attack_speed = weapon.attack_speed
 	atk_distance = weapon.atk_distance
+	
 	caculate_all()
 	inited.emit()
 	
@@ -169,6 +169,19 @@ func switch_weapon(weapon_id: int) -> void:
 	
 	caculate_all()
 	weapon_changed.emit()
+
+
+# 人物获得经验值
+func got_exp(exp_value: float) -> void:
+	# 当前经验值 = 当前经验值 + ( 获得的经验值 * ( 1 + 经验值修正 ) )
+	exp = exp + exp_value * ( 1 + exp_modifier )
+	exp_changed.emit()
+	
+	var old_level = level
+	level = LevelManager.get_current_level(exp)
+	
+	if level > old_level:
+		level_up.emit()
 
 
 func zoom_camera(zoom_value: float) -> void:

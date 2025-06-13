@@ -48,7 +48,10 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# 子类可以重写这个方法来实现不同的行为
-	handle_behavior(delta)
+	if not PlayerData.is_dead:
+		handle_behavior(delta)
+	else:
+		enemy_sprite.play("idle")
 	
 	
 # 基础行为，子类可以重写
@@ -114,15 +117,21 @@ func get_distance_to_player() -> float:
 
 
 func genarate_drop_item() -> void:
-	var all_relic_items = ItemDatabase.get_all_item_ids()
-
-	var array_size = all_relic_items.size()
-	var random_index = randi() % array_size
-	var drop_item_id = all_relic_items[random_index]
-	var relic_object = ItemDatabase.get_item_resource(drop_item_id)
-	var drop_item_scene = preload("res://Scenes/drop_item.tscn")
-	var drop_item_instant = drop_item_scene.instantiate()
-	drop_item_instant.drop_item = relic_object
-	drop_item_instant.global_position = global_position
+	# 生成掉落物
+	#var all_relic_items = ItemDatabase.get_all_item_ids()
+#
+	#var array_size = all_relic_items.size()
+	#var random_index = randi() % array_size
+	#var drop_item_id = all_relic_items[random_index]
+	#var relic_object = ItemDatabase.get_item_resource(drop_item_id)
+	#var drop_item_scene = preload("res://Scenes/drop_item.tscn")
+	#var drop_item_instant = drop_item_scene.instantiate()
+	#drop_item_instant.drop_item = relic_object
+	#drop_item_instant.global_position = global_position
+	#
+	#get_tree().get_root().call_deferred("add_child", drop_item_instant)
 	
-	get_tree().get_root().call_deferred("add_child", drop_item_instant)
+	# 掉落经验
+	var exp_ball = preload("res://Scenes/exp_ball.tscn").instantiate()
+	exp_ball.global_position = global_position
+	get_tree().get_root().call_deferred("add_child", exp_ball)

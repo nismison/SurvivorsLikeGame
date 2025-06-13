@@ -23,5 +23,4 @@ func move_line_simple(duration: float = 1):
 	tween.tween_property(line, "position", Vector2(30, 0), duration)
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.set_ease(Tween.EASE_OUT)
-	await tween.finished
-	visible = false
+	

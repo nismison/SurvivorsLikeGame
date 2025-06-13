@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cywtrslx48e0o"]
+[gd_scene load_steps=8 format=3 uid="uid://cywtrslx48e0o"]
 
 [ext_resource type="PackedScene" uid="uid://qfy4alpok1ka" path="res://Scenes/infinite_map_generator.tscn" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://ctvet2qepboy1" path="res://Scenes/world.gd" id="1_8j60k"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dh8c6vpsjq2qs" path="res://Scenes/GUI/player_status_ui.tscn" id="5_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://bv3axwxomkdte" path="res://Scenes/teleport_stone.tscn" id="5_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://bg2oiykm3a2x8" path="res://Scenes/GUI/player_relic_ui.tscn" id="6_o06y3"]
+[ext_resource type="PackedScene" uid="uid://xc51rgjw3rss" path="res://Scenes/GUI/player_exp_ui.tscn" id="7_o06y3"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_8j60k")
@@ -20,11 +21,11 @@ y_sort_enabled = true
 [node name="Teleportation" parent="Characters" instance=ExtResource("5_fo5ed")]
 position = Vector2(-174, -59)
 
-[node name="PlayerUICanvas" type="CanvasLayer" parent="."]
+[node name="PlayerHealthUICanvas" type="CanvasLayer" parent="."]
 scale = Vector2(3, 3)
 transform = Transform2D(3, 0, 0, 3, 0, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayerUICanvas"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerHealthUICanvas"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,13 +37,17 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="PlayerUI" type="HBoxContainer" parent="PlayerUICanvas/MarginContainer"]
+[node name="PlayerUI" type="HBoxContainer" parent="PlayerHealthUICanvas/MarginContainer"]
 layout_mode = 2
 
-[node name="PlayerStatusUI" parent="PlayerUICanvas/MarginContainer/PlayerUI" instance=ExtResource("5_5ukr8")]
+[node name="PlayerStatusUI" parent="PlayerHealthUICanvas/MarginContainer/PlayerUI" instance=ExtResource("5_5ukr8")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerRelicUI" parent="PlayerUICanvas/MarginContainer/PlayerUI" instance=ExtResource("6_o06y3")]
+[node name="PlayerRelicUI" parent="PlayerHealthUICanvas/MarginContainer/PlayerUI" instance=ExtResource("6_o06y3")]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerExpUI" parent="CanvasLayer" instance=ExtResource("7_o06y3")]

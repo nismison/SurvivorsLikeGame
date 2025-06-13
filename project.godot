@@ -21,6 +21,7 @@ PlayerData="*res://Script/player_data.gd"
 ItemDatabase="*res://Script/Item/item_database.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
+LevelManager="*res://Script/level_manager.gd"
 
 [display]
 
