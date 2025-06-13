@@ -54,9 +54,21 @@ size_flags_horizontal = 3
 [node name="PlayerExpUI" parent="ExpUICanvas" instance=ExtResource("7_o06y3")]
 
 [node name="LevelUpCanvas" type="CanvasLayer" parent="."]
+visible = false
 scale = Vector2(3, 3)
 transform = Transform2D(3, 0, 0, 3, 0, 0)
 
 [node name="LevelUpScene" parent="LevelUpCanvas" instance=ExtResource("8_k7acu")]
 offset_right = -1280.0
 offset_bottom = -720.0
+
+[node name="TestCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="TestCanvasLayer"]
+offset_left = 40.0
+offset_top = 184.0
+offset_right = 136.0
+offset_bottom = 209.0
+text = "Test Button"
+
+[connection signal="pressed" from="TestCanvasLayer/Button" to="." method="_on_button_pressed"]

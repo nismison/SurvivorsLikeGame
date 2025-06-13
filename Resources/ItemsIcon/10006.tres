@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cuw324l30ha8x"]
+
+[ext_resource type="Texture2D" uid="uid://c3y4b3t7nc3e" path="res://Assets/Projectile/LootItems/loot_pack_2 (16).png" id="1_vl5p1"]
+
+[resource]
+atlas = ExtResource("1_vl5p1")
+region = Rect2(0, 0, 32, 32)

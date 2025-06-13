@@ -2,10 +2,11 @@ extends Node2D
 
 var spawn_distance: float = 20.0   # 距离摄像机多远生成
 var spawn_interval: float = 0.5    # 生成间隔（秒）
-var max_enemies: int = 100          # 最大敌人数量
+var max_enemies: int = 1          # 最大敌人数量
 
 @onready var characters_node: Node2D = $Characters
 @onready var level_up_canvas: CanvasLayer = $LevelUpCanvas
+@onready var level_up_scene: Control = $LevelUpCanvas/LevelUpScene
 
 var camera: Camera2D
 
@@ -21,6 +22,7 @@ func _ready():
 	timer.start()
 	
 	PlayerData.level_up.connect(_on_player_level_up)
+	PlayerData.relic_changed.connect(_close_level_up_scene)
 
 func _spawn_enemy():
 	# 检查是否达到最大敌人数量
@@ -82,16 +84,40 @@ func get_random_spawn_position(camera_rect: Rect2) -> Vector2:
 	
 	return spawn_pos
 
+
 func get_current_enemy_count() -> int:
-	# 计算当前PlantEnemy数量
+	# 计算当前敌人数量
 	var count = 0
 	for child in characters_node.get_children():
 		if child.scene_file_path.contains("Enemy"):
 			count += 1
 	return count
 	
-	
+
+# 玩家升级
 func _on_player_level_up() -> void:
 	get_tree().paused = true
-	# TODO 随机生成升级奖励
+	level_up_scene.genarate_drop_item()
 	level_up_canvas.visible = true
+
+
+# 关闭升级窗口
+func _close_level_up_scene() -> void:
+	if level_up_canvas.visible:
+		level_up_canvas.visible = false
+		get_tree().paused = false
+
+
+func _on_button_pressed() -> void:
+	print("Test Button")
+	#var _exp = LevelManager.get_level_required_exp(PlayerData.level + 1)
+	#PlayerData.got_exp(_exp)
+	
+	
+	# 添加遗物
+	var all_relic_items = ItemDatabase.get_items_by_type("圣物")
+	var array_size = all_relic_items.size()
+	var random_index = randi() % array_size
+	var bonus_item = all_relic_items[random_index]
+	PlayerData.relic_add(bonus_item)
+	print("添加圣物: %s" % bonus_item.name)

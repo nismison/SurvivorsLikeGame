@@ -18,10 +18,8 @@ func on_relic_changed() -> void:
 
 # 删除所有圣物UI
 func clean_relic_ui() -> void:
-	for i in len(PlayerData.relic_list) - 1:
-		var node = h_box_container.get_child(i)
-		if node:
-			node.queue_free()
+	for child in h_box_container.get_children():
+		child.queue_free()
 		
 
 # 绘制当前携带圣物UI

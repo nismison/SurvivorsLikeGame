@@ -14,6 +14,62 @@
 	  }
 	},
 	{
+	  "id": 10003,
+	  "name": "金币余韵",
+	  "description": "三枚金币残留的奇妙余韵，可改写升级奖励规则，使 3 选 1 变为 4 选 1",
+	  "icon_path": "res://Resources/ItemsIcon/10003.tres",
+	  "price": 50,
+	  "stack_size": 10,
+	  "item_type": "RELIC",
+	  "rarity": "EPIC",
+	  "modifier": {
+		"level_up_more_bonus": 1
+	  }
+	},
+	{
+	  "id": 10004,
+	  "name": "折戟沉沙",
+	  "description": "伤害 +20%\n你的子弹会无规律散射",
+	  "icon_path": "res://Resources/ItemsIcon/10004.tres",
+	  "price": 50,
+	  "stack_size": 10,
+	  "item_type": "RELIC",
+	  "rarity": "EPIC",
+	  "modifier": {
+		"random_spread": 1,
+		"damage": 0.2,
+	  }
+	},
+	{
+	  "id": 10005,
+	  "name": "勇者之心",
+	  "description": "生命值上限 +1",
+	  "icon_path": "res://Resources/ItemsIcon/10005.tres",
+	  "price": 50,
+	  "stack_size": 10,
+	  "item_type": "RELIC",
+	  "rarity": "EPIC",
+	  "modifier": {
+		"health": 1,
+	  }
+	},
+	{
+	  "id": 10006,
+	  "name": "别人的脚",
+	  "description": "不懂是谁的脚...\n\n移动速度 +10%",
+	  "icon_path": "res://Resources/ItemsIcon/10006.tres",
+	  "price": 50,
+	  "stack_size": 10,
+	  "item_type": "RELIC",
+	  "rarity": "EPIC",
+	  "modifier": {
+		"move_speed": 0.1,
+	  }
+	},
+	
+	
+	
+	{
 	  "id": 10001,
 	  "name": "幻晶脉冲枪",
 	  "description": "枪身由神秘幻彩晶体拼接而成，能量流转如流动霓虹",

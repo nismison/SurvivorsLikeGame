@@ -29,22 +29,26 @@ var dash_cd_modifier: float = 0.0  # 闪避CD修正
 var dash_cd_total: float  # 总闪避CD
 
 var attack_speed: float  # 基础攻速
-var attack_speed_modifier: float = 2.0  # 攻速修正
+var attack_speed_modifier: float = 0.0  # 攻速修正
 var attack_speed_total: float  # 总攻速
 
 var bullet_count: int = 1  # 基础子弹数量
-var bullet_count_modifier: int = 5  # 子弹数量修正
+var bullet_count_modifier: int = 0  # 子弹数量修正
 var bullet_count_total: int  # 总子弹数量
 var bullet_spread_degrees: float = 30.0 # 多子弹散射角度
 
 var relic_list: Array[Item] = []  # 当前圣物列表
 
-var random_spread: bool = false  # 道具效果：子弹会不规律散射
 var bullet_scale_modifier: float = 0.0  # 子弹大小修正
 
 var exp: float = 0.0  # 人物经验值
-var exp_modifier: float = 10.0  # 获取经验值修正
+var exp_modifier: float = 0.0  # 获取经验值修正
 var level: int = 0  # 当前等级
+
+
+# 特殊道具效果
+var random_spread: bool = false  # 子弹不规律散射
+var level_up_more_bonus: bool = false  # 升级奖励从3选1变成4选1
 
 signal inited
 signal health_changed
@@ -147,8 +151,18 @@ func caculate_modifier(item: Item) -> void:
 			dash_speed_modifier += modifier_value
 		elif modifier_name == "dash_cd":
 			dash_cd_modifier += modifier_value
+		elif modifier_name == "move_speed":
+			move_speed_modifier += modifier_value
+		elif modifier_name == "damage":
+			damage_modifier += modifier_value
+		elif modifier_name == "health":
+			max_health += modifier_value
+			current_health += modifier_value
+			health_changed.emit()
 		elif modifier_name == "random_spread":
 			random_spread = true
+		elif modifier_name == "level_up_more_bonus":
+			level_up_more_bonus = true
 	
 	caculate_all()
 

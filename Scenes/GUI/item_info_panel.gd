@@ -28,6 +28,7 @@ func _ready() -> void:
 	
 	tool_tip_container.visible = show_tooltip
 	
+	# 升级奖励
 	if mouse_hover_enable:
 		var rect_size = self.size
 		# 将锚点设置为中心
@@ -78,3 +79,4 @@ func _on_mouse_exited() -> void:
 
 func _on_pressed() -> void:
 	print("当前选择奖励：%s" % item.name)
+	PlayerData.relic_add(item)

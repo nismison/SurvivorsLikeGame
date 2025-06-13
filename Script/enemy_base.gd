@@ -128,7 +128,7 @@ func genarate_drop_item() -> void:
 	#var drop_item_instant = drop_item_scene.instantiate()
 	#drop_item_instant.drop_item = relic_object
 	#drop_item_instant.global_position = global_position
-	#
+#
 	#get_tree().get_root().call_deferred("add_child", drop_item_instant)
 	
 	# 掉落经验

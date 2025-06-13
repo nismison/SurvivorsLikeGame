@@ -71,8 +71,8 @@ func create_item(item_id: int, quantity: int = 1) -> Dictionary:
 func get_item_resource(item_id: int) -> Item:
 	return item_resources.get(item_id, null)
 
-# 根据类型获取道具列表
-func get_items_by_type(item_type: Item.ItemType) -> Array[Item]:
+# 根据类型获取道具列表 item_type: String(中文类型名称)
+func get_items_by_type(item_type: String) -> Array[Item]:
 	var result: Array[Item] = []
 	for item in item_resources.values():
 		if item.item_type == item_type:
