@@ -24,6 +24,10 @@ var dash_speed: float  # 基础闪避速度 -> 移动速度 * 2.5
 var dash_speed_modifier: float = 0.0  # 闪避速度修正
 var dash_speed_total: float  # 总闪避速度
 
+var dash_cd: float = 1  # 基础闪避CD(单位 秒)
+var dash_cd_modifier: float = 0.0  # 闪避CD修正
+var dash_cd_total: float  # 总闪避CD
+
 var attack_speed: float  # 基础攻速
 var attack_speed_modifier: float = 0.0  # 攻速修正
 var attack_speed_total: float  # 总攻速
@@ -85,6 +89,7 @@ func caculate_all() -> void:
 	caculate_attack_speed()
 	caculate_atk_distance()
 	caculate_bullet_count()
+	caculate_dash_cd()
 
 
 # 计算伤害
@@ -105,6 +110,12 @@ func caculate_dash_speed() -> void:
 	# 总闪避速度 = 基础闪避速度 + ( 基础闪避速度 * 闪避速度修正 )
 	dash_speed = move_speed * 2.5
 	dash_speed_total = dash_speed + dash_speed * dash_speed_modifier
+
+
+# 计算闪避CD
+func caculate_dash_cd() -> void:
+	# 总闪避CD = 基础闪避CD + ( 基础闪避CD * 闪避CD修正 )
+	dash_cd_total = dash_cd + dash_cd * dash_cd_modifier
 
 
 # 计算攻击速度
@@ -134,6 +145,10 @@ func caculate_modifier(item: Item) -> void:
 		
 		if modifier_name == "dash_speed":
 			dash_speed_modifier += modifier_value
+		elif modifier_name == "dash_cd":
+			dash_cd_modifier += modifier_value
+		elif modifier_name == "random_spread":
+			random_spread = true
 	
 	caculate_all()
 

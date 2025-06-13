@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://de40i1ga5235w"]
+[gd_scene load_steps=47 format=3 uid="uid://de40i1ga5235w"]
 
 [ext_resource type="Script" uid="uid://rvjyk781nx5x" path="res://Scenes/player.gd" id="1_y8w33"]
 [ext_resource type="Shader" uid="uid://dufwfkrw0frc3" path="res://Resources/Shader/Based/flash_white.gdshader" id="3_3smsa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dxxcbjkash0oy" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="6_gymyn"]
 [ext_resource type="Script" uid="uid://bx6dutr23v2k6" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://dyj2l7dp67hio" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="7_pu2lt"]
+[ext_resource type="PackedScene" uid="uid://crk1rf8hduomu" path="res://Scenes/GUI/dash_timer_ui.tscn" id="10_tx1dd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
 shader = ExtResource("3_3smsa")
@@ -301,7 +302,6 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DashCDTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="WeaponSocket" type="Node2D" parent="."]
@@ -310,7 +310,6 @@ one_shot = true
 physics_interpolation_mode = 1
 position = Vector2(0, 3.72529e-09)
 zoom = Vector2(2.5, 2.5)
-position_smoothing_enabled = true
 
 [node name="Shaker" type="Node2D" parent="Camera2D"]
 script = ExtResource("4_f1ek2")
@@ -337,3 +336,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="DashTimerUI" parent="." instance=ExtResource("10_tx1dd")]
+position = Vector2(-15, -14)

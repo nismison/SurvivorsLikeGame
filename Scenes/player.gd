@@ -13,6 +13,7 @@ class_name Player
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var hurt_area: Area2D = $HurtArea
 @onready var shaker: ShakerComponent2D = $Camera2D/Shaker
+@onready var dash_timer_ui: Node2D = $DashTimerUI
 
 @onready var weapon_socket = $WeaponSocket
 
@@ -86,11 +87,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		start_dash()
 
 
-# 闪避相关函数
+# 开始闪避
 func start_dash() -> void:
 	if is_dashing or not ready_to_dash:
 		return
 	
+	var dash_cd = max(PlayerData.dash_cd_total, 0.1)
+	dash_cd_timer.wait_time = dash_cd
+	dash_timer_ui.move_line_simple(dash_cd)
 	is_dashing = true
 	ready_to_dash = false
 	

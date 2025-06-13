@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://crk1rf8hduomu"]
+
+[ext_resource type="Script" uid="uid://biiqbcuxbtyl0" path="res://Scenes/GUI/dash_timer_ui.gd" id="1_nxhhl"]
+
+[node name="DashTimerUI" type="Node2D"]
+script = ExtResource("1_nxhhl")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 30, 0)
+width = 1.0
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PackedVector2Array(0, -3, 0, 3)
+width = 1.0
+
+[node name="Line2D3" type="Line2D" parent="."]
+points = PackedVector2Array(30, -3, 30, 3)
+width = 1.0
+
+[node name="MoveLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, -3, 0, 3)
+width = 1.0

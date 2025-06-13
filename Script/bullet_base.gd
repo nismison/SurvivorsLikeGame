@@ -19,6 +19,8 @@ func _ready() -> void:
 	z_index = 6
 	
 	start_position = global_position
+	
+	# 子弹大小修正
 	scale = scale + scale * PlayerData.bullet_scale_modifier
 
 
