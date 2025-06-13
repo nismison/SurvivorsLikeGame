@@ -36,6 +36,7 @@ var bullet_spread_degrees: float = 30.0 # 多子弹散射角度
 var relic_list: Array[Item] = []  # 当前圣物列表
 
 var random_spread: bool = false  # 道具效果：子弹会不规律散射
+var bullet_scale_modifier: float = 0.0  # 子弹大小修正
 
 
 #var player_level: int = 1

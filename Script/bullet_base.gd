@@ -19,6 +19,7 @@ func _ready() -> void:
 	z_index = 6
 	
 	start_position = global_position
+	scale = scale + scale * PlayerData.bullet_scale_modifier
 
 
 func _process(delta):

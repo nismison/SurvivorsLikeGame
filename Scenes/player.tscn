@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://de40i1ga5235w"]
+[gd_scene load_steps=46 format=3 uid="uid://de40i1ga5235w"]
 
 [ext_resource type="Script" uid="uid://rvjyk781nx5x" path="res://Scenes/player.gd" id="1_y8w33"]
 [ext_resource type="Shader" uid="uid://dufwfkrw0frc3" path="res://Resources/Shader/Based/flash_white.gdshader" id="3_3smsa"]
@@ -8,7 +8,6 @@
 [ext_resource type="Shader" uid="uid://bn82lc46dctgb" path="res://Resources/Shader/Based/hurt_sfx.gdshader" id="5_x3wgy"]
 [ext_resource type="Script" uid="uid://dxxcbjkash0oy" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="6_gymyn"]
 [ext_resource type="Script" uid="uid://bx6dutr23v2k6" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="6_tx1dd"]
-[ext_resource type="PackedScene" uid="uid://clo86nmidalf7" path="res://Scenes/GUI/action_tip.tscn" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://dyj2l7dp67hio" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="7_pu2lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
@@ -338,8 +337,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="ActionTip" parent="." instance=ExtResource("6_x3wgy")]
-visible = false
-position = Vector2(0, -19)
-scale = Vector2(0.5, 0.5)
