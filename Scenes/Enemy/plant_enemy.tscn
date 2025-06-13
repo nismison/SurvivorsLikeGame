@@ -1,15 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://bgn42yltpkvht"]
+[gd_scene load_steps=26 format=3 uid="uid://bgn42yltpkvht"]
 
 [ext_resource type="Script" uid="uid://c0srl7l2xi16d" path="res://Scenes/Enemy/plant_enemy.gd" id="1_0pd72"]
-[ext_resource type="Shader" uid="uid://dufwfkrw0frc3" path="res://Resources/Shader/Based/flash_white.gdshader" id="1_ihfb6"]
 [ext_resource type="Texture2D" uid="uid://b0gv2f5n6aww1" path="res://Assets/Enemy/Plants/Plant3/Idle/Plant3_Idle_full.png" id="2_1g6rd"]
 [ext_resource type="Texture2D" uid="uid://iytm1pivlpnf" path="res://Assets/Enemy/Plants/Plant3/Attack/Plant3_Attack_full.png" id="2_f7jab"]
 [ext_resource type="Texture2D" uid="uid://dd1gxwmbh0t4y" path="res://Assets/Enemy/Plants/Plant3/Walk/Plant3_Walk_full.png" id="3_1g6rd"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6l243"]
-shader = ExtResource("1_ihfb6")
-shader_parameter/flash = false
-shader_parameter/flash_strength = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7jab"]
 radius = 10.0499
@@ -163,7 +157,6 @@ size = Vector2(32, 64)
 radius = 17.0
 
 [node name="PlantEnemy" type="CharacterBody2D"]
-material = SubResource("ShaderMaterial_6l243")
 script = ExtResource("1_0pd72")
 metadata/_custom_type_script = "uid://bfsx4swttxvqm"
 

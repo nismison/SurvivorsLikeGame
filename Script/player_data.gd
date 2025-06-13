@@ -43,6 +43,7 @@ var random_spread: bool = false  # 道具效果：子弹会不规律散射
 #var player_inventory: Array = []
 #var player_attack_speed: int = 2
 
+signal inited
 signal health_changed
 signal player_dead
 signal relic_changed
@@ -66,12 +67,13 @@ func init_player_data() -> void:
 	is_dead = false
 	current_health = max_health
 	current_armor = max_armor
-	# 初始武器
+	# TODO 初始化武器
 	weapon = ItemDatabase.get_item_resource(10001)
 	damage = weapon.damage
 	attack_speed = weapon.attack_speed
 	atk_distance = weapon.atk_distance
 	caculate_all()
+	inited.emit()
 	
 
 # 重新计算所有属性 (更新属性)

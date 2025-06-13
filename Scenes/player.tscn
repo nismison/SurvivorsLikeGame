@@ -1,10 +1,15 @@
-[gd_scene load_steps=40 format=3 uid="uid://de40i1ga5235w"]
+[gd_scene load_steps=47 format=3 uid="uid://de40i1ga5235w"]
 
 [ext_resource type="Script" uid="uid://rvjyk781nx5x" path="res://Scenes/player.gd" id="1_y8w33"]
 [ext_resource type="Shader" uid="uid://dufwfkrw0frc3" path="res://Resources/Shader/Based/flash_white.gdshader" id="3_3smsa"]
+[ext_resource type="Script" uid="uid://bxqshg7cicyof" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="4_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://bx5b80acl8v7c" path="res://Assets/Players/Satyr.png" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://bpc2eurc3rhcy" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="5_tx1dd"]
 [ext_resource type="Shader" uid="uid://bn82lc46dctgb" path="res://Resources/Shader/Based/hurt_sfx.gdshader" id="5_x3wgy"]
+[ext_resource type="Script" uid="uid://dxxcbjkash0oy" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="6_gymyn"]
+[ext_resource type="Script" uid="uid://bx6dutr23v2k6" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="6_tx1dd"]
 [ext_resource type="PackedScene" uid="uid://clo86nmidalf7" path="res://Scenes/GUI/action_tip.tscn" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://dyj2l7dp67hio" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="7_pu2lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
 shader = ExtResource("3_3smsa")
@@ -240,6 +245,30 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ivevv"]
 radius = 11.6857
 
+[sub_resource type="Resource" id="Resource_gymyn"]
+script = ExtResource("6_tx1dd")
+frequency = Vector2(5, 5)
+phase = Vector2(1, 1)
+amplitude = Vector2(15, 15)
+offset = Vector2(0, 0)
+BlendingMode = 0
+fade_in = 0.0
+fade_out = 0.0
+start_percent = 0.0
+end_percent = 1.0
+_temp_graph = false
+bake_internal = 64
+metadata/_custom_type_script = "uid://bx6dutr23v2k6"
+
+[sub_resource type="Resource" id="Resource_ukyrk"]
+script = ExtResource("7_pu2lt")
+PositionShake = Array[ExtResource("5_tx1dd")]([SubResource("Resource_gymyn")])
+RotationShake = Array[ExtResource("6_gymyn")]([])
+ScaleShake = Array[ExtResource("5_tx1dd")]([])
+bake_internal = 64
+__follow_timeline = false
+metadata/_custom_type_script = "uid://dyj2l7dp67hio"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
 size = Vector2(11, 15)
 
@@ -255,7 +284,6 @@ z_index = 5
 collision_mask = 64
 motion_mode = 1
 script = ExtResource("1_y8w33")
-god_mode = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_8erm5")
@@ -281,8 +309,17 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
+position = Vector2(0, 3.72529e-09)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
+
+[node name="Shaker" type="Node2D" parent="Camera2D"]
+script = ExtResource("4_f1ek2")
+duration = 0.3
+fade_in = 0.0122591
+fade_out = 1.31951
+shakerPreset = SubResource("Resource_ukyrk")
+metadata/_custom_type_script = "uid://bxqshg7cicyof"
 
 [node name="HurtArea" type="Area2D" parent="."]
 collision_mask = 0

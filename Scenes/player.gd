@@ -12,6 +12,7 @@ class_name Player
 @onready var hurt_sfx: ColorRect = $ScreenSfx/HurtSfx
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var hurt_area: Area2D = $HurtArea
+@onready var shaker: ShakerComponent2D = $Camera2D/Shaker
 
 @onready var weapon_socket = $WeaponSocket
 
@@ -39,7 +40,7 @@ func zoom_to(target_zoom_value: float, duration: float = 0.3):
 
 
 func _ready():
-	init_weapon()  # 初始化武器场景、绑定挂点
+	PlayerData.inited.connect(init_weapon)  # 初始化武器场景、绑定挂点
 	PlayerData.player_dead.connect(on_player_dead)
 	PlayerData.weapon_changed.connect(init_weapon)
 	PlayerData.camera_zoom_changed.connect(zoom_to)
@@ -72,7 +73,7 @@ func _physics_process(delta: float) -> void:
 func init_weapon() -> void:
 	if cur_weapon_instance:
 		cur_weapon_instance.queue_free()
-
+	
 	var weapon_scene = load(PlayerData.weapon.scene)
 	cur_weapon_instance = weapon_scene.instantiate()
 	weapon_socket.add_child(cur_weapon_instance)
@@ -121,6 +122,9 @@ func hurted(damage: float) -> void:
 	sprite_material.set_shader_parameter("flash", true)
 	await get_tree().create_timer(0.1).timeout
 	sprite_material.set_shader_parameter("flash", false)
+	
+	# 震屏效果
+	shaker.play_shake()
 
 # 受击屏闪效果
 func hurt_screen_sfx() -> void:

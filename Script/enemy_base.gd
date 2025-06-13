@@ -11,8 +11,6 @@ class_name EnemyBase
 @onready var enemy_sprite: AnimatedSprite2D
 @onready var player: Node2D = get_tree().get_first_node_in_group("player")
 
-var flash_material: ShaderMaterial
-
 # 状态枚举
 enum EnemyState {
 	IDLE,
@@ -35,7 +33,6 @@ func _ready():
 	set_collision_layer_value(4, true)  # 和Enemy碰撞
 	set_collision_mask_value(7, true)   # 和阻挡区域碰撞
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
-	flash_material = enemy_sprite.material as ShaderMaterial
 	z_index = 5
 
 # 子类初始化入口 在子类脚本中重写
@@ -90,11 +87,12 @@ func take_damage():
 
 # 击中闪白
 func flash_white():
-	if flash_material == null:
-		return
+	# 新建material
+	var flash_material = ShaderMaterial.new()
+	flash_material.shader = load("res://Resources/Shader/Based/flash_white.gdshader")
+	enemy_sprite.material = flash_material
+	
 	flash_material.set_shader_parameter("flash", true)
-	flash_material.set_shader_parameter("flash_strength", 0.5)
-	flash_material.set_shader_parameter("enable_outline", false)
 	await get_tree().create_timer(0.1).timeout
 	flash_material.set_shader_parameter("flash", false)
 
@@ -121,13 +119,7 @@ func genarate_drop_item() -> void:
 	var array_size = all_relic_items.size()
 	var random_index = randi() % array_size
 	var drop_item_id = all_relic_items[random_index]
-
 	var relic_object = ItemDatabase.get_item_resource(drop_item_id)
-	print("生成的drop_item ID: ", relic_object, " 地址: ", str(relic_object.get_instance_id()))
-
-	
-	print("掉落物品： %s" % relic_object.name)
-	
 	var drop_item_scene = preload("res://Scenes/drop_item.tscn")
 	var drop_item_instant = drop_item_scene.instantiate()
 	drop_item_instant.drop_item = relic_object
