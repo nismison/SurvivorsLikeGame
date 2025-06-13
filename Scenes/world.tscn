@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cywtrslx48e0o"]
+[gd_scene load_steps=9 format=3 uid="uid://cywtrslx48e0o"]
 
 [ext_resource type="PackedScene" uid="uid://qfy4alpok1ka" path="res://Scenes/infinite_map_generator.tscn" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://ctvet2qepboy1" path="res://Scenes/world.gd" id="1_8j60k"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bv3axwxomkdte" path="res://Scenes/teleport_stone.tscn" id="5_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://bg2oiykm3a2x8" path="res://Scenes/GUI/player_relic_ui.tscn" id="6_o06y3"]
 [ext_resource type="PackedScene" uid="uid://xc51rgjw3rss" path="res://Scenes/GUI/player_exp_ui.tscn" id="7_o06y3"]
+[ext_resource type="PackedScene" uid="uid://cl2gas7821bd0" path="res://Scenes/GUI/level_up_scene.tscn" id="8_k7acu"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_8j60k")
@@ -48,6 +49,14 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ExpUICanvas" type="CanvasLayer" parent="."]
 
-[node name="PlayerExpUI" parent="CanvasLayer" instance=ExtResource("7_o06y3")]
+[node name="PlayerExpUI" parent="ExpUICanvas" instance=ExtResource("7_o06y3")]
+
+[node name="LevelUpCanvas" type="CanvasLayer" parent="."]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+
+[node name="LevelUpScene" parent="LevelUpCanvas" instance=ExtResource("8_k7acu")]
+offset_right = -1280.0
+offset_bottom = -720.0

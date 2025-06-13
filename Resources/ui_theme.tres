@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://k5xwhw5komqi" path="res://Assets/Fonts/fusion-pixel.ttc" id="1_xguql"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xguql"]
+bg_color = Color(0, 0, 0, 0.5)
 
 [resource]
 Button/fonts/font = ExtResource("1_xguql")

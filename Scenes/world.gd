@@ -5,6 +5,7 @@ var spawn_interval: float = 0.5    # 生成间隔（秒）
 var max_enemies: int = 100          # 最大敌人数量
 
 @onready var characters_node: Node2D = $Characters
+@onready var level_up_canvas: CanvasLayer = $LevelUpCanvas
 
 var camera: Camera2D
 
@@ -18,6 +19,8 @@ func _ready():
 	timer.wait_time = spawn_interval
 	timer.timeout.connect(_spawn_enemy)
 	timer.start()
+	
+	PlayerData.level_up.connect(_on_player_level_up)
 
 func _spawn_enemy():
 	# 检查是否达到最大敌人数量
@@ -86,3 +89,9 @@ func get_current_enemy_count() -> int:
 		if child.scene_file_path.contains("Enemy"):
 			count += 1
 	return count
+	
+	
+func _on_player_level_up() -> void:
+	get_tree().paused = true
+	# TODO 随机生成升级奖励
+	level_up_canvas.visible = true

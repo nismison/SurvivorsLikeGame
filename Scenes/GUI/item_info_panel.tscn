@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b37mrtdhbeqwu"]
+[gd_scene load_steps=16 format=3 uid="uid://b37mrtdhbeqwu"]
 
 [ext_resource type="Texture2D" uid="uid://dx2tsbnvebbw2" path="res://Assets/GUI/GUI.png" id="1_55b22"]
 [ext_resource type="Script" uid="uid://dhfog02udf24j" path="res://Scenes/GUI/item_info_panel.gd" id="1_e13jd"]
 [ext_resource type="Texture2D" uid="uid://cvvsjly00wocu" path="res://Resources/ItemsIcon/10002.tres" id="3_p2845"]
 [ext_resource type="Texture2D" uid="uid://bb616t5haov2h" path="res://Assets/GUI/KeyboardIcons/keyboard_E_1.png" id="4_p2845"]
 [ext_resource type="Texture2D" uid="uid://cn7i821byadde" path="res://Assets/GUI/KeyboardIcons/keyboard_E_2.png" id="5_muunp"]
+[ext_resource type="Texture2D" uid="uid://dscjllsogdywr" path="res://Assets/GUI/selection.png" id="6_muunp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0lod"]
 atlas = ExtResource("1_55b22")
@@ -23,6 +24,24 @@ frame_0/texture = ExtResource("4_p2845")
 frame_0/duration = 0.2
 frame_1/texture = ExtResource("5_muunp")
 frame_1/duration = 0.2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wgkt"]
+atlas = ExtResource("6_muunp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsad7"]
+atlas = ExtResource("6_muunp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwtbt"]
+atlas = ExtResource("6_muunp")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3afd"]
+atlas = ExtResource("6_muunp")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muunp"]
 
 [node name="ItemInfoPanel" type="MarginContainer"]
 z_index = 10
@@ -137,3 +156,38 @@ texture = SubResource("AnimatedTexture_7wgkt")
 [node name="Label2" type="Label" parent="ItemInfoContainer/VBoxContainer/ToolTipContainer/HBoxContainer2"]
 layout_mode = 2
 text = "拾取"
+
+[node name="Selection" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="SelectionTopLeft" type="TextureRect" parent="Selection"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_7wgkt")
+
+[node name="SelectionTopRight" type="TextureRect" parent="Selection"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_hsad7")
+
+[node name="SelectionBottomLeft" type="TextureRect" parent="Selection"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_lwtbt")
+
+[node name="SelectionBottomRight" type="TextureRect" parent="Selection"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_e3afd")
+
+[node name="SelectionButton" type="Button" parent="Selection"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_muunp")
+flat = true

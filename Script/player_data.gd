@@ -43,7 +43,7 @@ var random_spread: bool = false  # 道具效果：子弹会不规律散射
 var bullet_scale_modifier: float = 0.0  # 子弹大小修正
 
 var exp: float = 0.0  # 人物经验值
-var exp_modifier: float = 0.0  # 获取经验值修正
+var exp_modifier: float = 10.0  # 获取经验值修正
 var level: int = 0  # 当前等级
 
 signal inited
