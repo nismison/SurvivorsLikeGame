@@ -105,7 +105,7 @@ func calculate_health(damage: float):
 	# 敌人死亡
 	if enemy_health <= 0:
 		# TODO 敌人死亡掉落
-		#genarate_drop_item()
+		genarate_drop_item()
 		queue_free()
 
 # 获取到玩家的距离

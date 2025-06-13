@@ -230,7 +230,6 @@ func shoot_bullet() -> void:
 	last_fire_time = time_accumulator
 	
 	for i in PlayerData.bullet_count_total:
-		print("当前第 %s 发子弹" % i)
 		var bullet = bullet_scene.instantiate().duplicate()
 		var mouse_pos = get_global_mouse_position()
 		var base_direction = (mouse_pos - global_position).normalized()
@@ -267,7 +266,6 @@ func shoot_bullet() -> void:
 		bullet.global_position = spawn_pos
 		bullet.direction = direction
 		bullet.rotation = direction.angle()
-		print("旋转角度：%s" % bullet.rotation)
 		get_tree().current_scene.add_child(bullet)
 	
 
